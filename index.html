@@ -39,7 +39,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+    overflow: hidden;
+    transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
   }
 
   #preloader.hide {
@@ -47,14 +48,86 @@
   }
 
   .pl-logo {
-    width: min(320px, 65vw);
-    mix-blend-mode: screen;
-    animation: plPulse 0.6s ease both;
+    width: min(340px, 68vw);
+    position: relative;
+    z-index: 2;
+    animation: slamDown 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
   }
 
-  @keyframes plPulse {
-    from { opacity: 0; transform: scale(0.85); }
-    to   { opacity: 1; transform: scale(1); }
+  /* shockwave ring */
+  .pl-shock {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 4px solid var(--rojo);
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .pl-shock.fire {
+    animation: shockwave 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .pl-shock2 {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(204,0,0,0.4);
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .pl-shock2.fire {
+    animation: shockwave 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+
+  /* red flash overlay */
+  .pl-flash {
+    position: absolute;
+    inset: 0;
+    background: var(--rojo);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .pl-flash.fire {
+    animation: redFlash 0.6s ease forwards;
+  }
+
+  /* ground shake — subtle vertical tremor on body */
+  .shake { animation: groundShake 0.3s ease both; }
+
+  @keyframes slamDown {
+    0%   { transform: translateY(-110vh) scale(1.15); opacity: 0; }
+    70%  { transform: translateY(12px) scale(1.02); opacity: 1; }
+    85%  { transform: translateY(-6px) scale(0.99); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  @keyframes shockwave {
+    0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+  }
+
+  @keyframes redFlash {
+    0%   { opacity: 0; }
+    25%  { opacity: 0.45; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes groundShake {
+    0%,100% { transform: translateY(0); }
+    20%     { transform: translateY(-6px); }
+    40%     { transform: translateY(4px); }
+    60%     { transform: translateY(-3px); }
+    80%     { transform: translateY(2px); }
   }
 
   /* ── NAVBAR ── */
@@ -584,7 +657,10 @@
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <img src="logo-dark.png" alt="YK Rental" class="pl-logo">
+  <div class="pl-flash" id="plFlash"></div>
+  <div class="pl-shock" id="plShock1"></div>
+  <div class="pl-shock2" id="plShock2"></div>
+  <img src="logo-nav.png" alt="YK Rental" class="pl-logo" id="plLogo">
 </div>
 
 <!-- NAVBAR -->
@@ -858,11 +934,26 @@
 </a>
 
 <script>
-  // Preloader
+  // Preloader — impacto + destello
   window.addEventListener('load', () => {
+    const pl       = document.getElementById('preloader');
+    const flash    = document.getElementById('plFlash');
+    const shock1   = document.getElementById('plShock1');
+    const shock2   = document.getElementById('plShock2');
+
+    // Logo slam lands at ~0.7s → trigger effects
     setTimeout(() => {
-      document.getElementById('preloader').classList.add('hide');
-    }, 1400);
+      flash.classList.add('fire');
+      shock1.classList.add('fire');
+      shock2.classList.add('fire');
+      document.body.classList.add('shake');
+    }, 700);
+
+    // Remove shake class after animation
+    setTimeout(() => document.body.classList.remove('shake'), 1000);
+
+    // Hide preloader — slide up
+    setTimeout(() => pl.classList.add('hide'), 1900);
   });
 
   // Reveal on scroll
