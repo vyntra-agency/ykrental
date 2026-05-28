@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YK Rental — Equipo Ligero de Construcción · Chihuahua</title>
+<meta name="description" content="Renta de equipo ligero de construcción en Chihuahua. Cortadora, generador, martillo, bailarina, revolvedora, llana mecánica. Entrega a domicilio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #CC0000;
+    --rojo-dark: #A00000;
+    --negro: #0D0D0D;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2C2C2C;
+    --gris-texto: #999;
+    --blanco: #FFFFFF;
+    --crema: #F5F5F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(204,0,0,0.2);
+  }
+
+  .nav-logo { height: 44px; width: auto; }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--rojo);
+    color: var(--blanco);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--rojo-dark); }
+
+  .nav-cta svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    background: var(--negro);
+    overflow: hidden;
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(204,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(204,0,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: min(320px, 70vw);
+    margin-bottom: 32px;
+    position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--rojo);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(38px, 7vw, 80px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    position: relative;
+    animation: fadeUp 0.8s 0.2s ease both;
+    max-width: 900px;
+  }
+
+  .hero h1 span { color: var(--rojo); }
+
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--gris-texto);
+    margin-top: 16px;
+    max-width: 520px;
+    line-height: 1.6;
+    position: relative;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--rojo);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--rojo-dark); transform: translateY(-2px); }
+  .btn-primary svg { width: 22px; height: 22px; fill: #fff; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--rojo); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 56px;
+    position: relative;
+    animation: fadeUp 0.8s 0.5s ease both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--rojo);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--gris-texto);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.1);
+    align-self: stretch;
+  }
+
+  /* ── EQUIPO ── */
+  .section {
+    padding: 80px 5%;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--gris-texto);
+    margin-top: 12px;
+  }
+
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .equipo-card {
+    background: var(--gris-oscuro);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: default;
+  }
+
+  .equipo-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rojo);
+  }
+
+  .equipo-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.25s;
+  }
+
+  .equipo-card:hover .equipo-img { filter: grayscale(0%); }
+
+  .equipo-info {
+    padding: 18px 20px 20px;
+  }
+
+  .equipo-nombre {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .equipo-desc {
+    font-size: 13px;
+    color: var(--gris-texto);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .equipo-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    color: var(--rojo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .equipo-cta:hover { gap: 10px; }
+  .equipo-cta svg { width: 16px; height: 16px; fill: var(--rojo); }
+
+  /* ── COBERTURA ── */
+  .cobertura { background: var(--gris-oscuro); }
+
+  .cobertura-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .zona-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 8px;
+  }
+
+  .zona-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--negro);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 16px 20px;
+    transition: border-color 0.2s;
+  }
+
+  .zona-card:hover { border-color: rgba(204,0,0,0.4); }
+
+  .zona-card.featured {
+    border-color: rgba(204,0,0,0.3);
+    background: rgba(204,0,0,0.06);
+  }
+
+  .zona-left { display: flex; align-items: center; gap: 12px; }
+
+  .zona-icon {
+    width: 36px; height: 36px;
+    background: rgba(204,0,0,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .zona-icon svg { width: 18px; height: 18px; fill: var(--rojo); }
+
+  .zona-nombre {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .zona-detalle {
+    font-size: 12px;
+    color: var(--gris-texto);
+    margin-top: 2px;
+  }
+
+  .zona-precio {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--blanco);
+    white-space: nowrap;
+  }
+
+  .zona-precio.gratis { color: #22C55E; }
+  .zona-precio.tope { color: var(--rojo); }
+
+  .zona-nota {
+    font-size: 11px;
+    color: var(--gris-texto);
+    text-align: right;
+    margin-top: 3px;
+  }
+
+  .cobertura-aviso {
+    margin-top: 24px;
+    padding: 14px 20px;
+    background: rgba(204,0,0,0.08);
+    border: 1px solid rgba(204,0,0,0.2);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--gris-texto);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .cobertura-aviso svg { width: 16px; height: 16px; fill: var(--rojo); flex-shrink: 0; margin-top: 1px; }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    text-align: center;
+    padding: 80px 5%;
+    background: var(--negro);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(204,0,0,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 6vw, 64px);
+    text-transform: uppercase;
+    line-height: 1;
+    position: relative;
+  }
+
+  .cta-final h2 span { color: var(--rojo); }
+
+  .cta-final p {
+    font-size: 16px;
+    color: var(--gris-texto);
+    margin-top: 14px;
+    position: relative;
+  }
+
+  .cta-final .btn-primary {
+    margin-top: 32px;
+    font-size: 20px;
+    padding: 18px 40px;
+    position: relative;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo { height: 40px; width: auto; }
+
+  .footer-info {
+    font-size: 13px;
+    color: var(--gris-texto);
+    line-height: 1.6;
+  }
+
+  .footer-info a { color: var(--gris-texto); text-decoration: none; }
+  .footer-info a:hover { color: var(--rojo); }
+
+  /* ── WA FLOTANTE ── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    animation: waPulse 2.5s infinite;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); animation: none; }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* ── ANIMACIONES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50%       { box-shadow: 0 4px 32px rgba(37,211,102,0.7); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-logo { height: 36px; }
+    .nav-cta { font-size: 13px; padding: 8px 14px; }
+    .nav-cta span { display: none; }
+
+    .hero { padding: 90px 5% 50px; }
+    .hero-logo { width: min(260px, 75vw); }
+    .hero-stats { gap: 24px; }
+    .stat-divider { display: none; }
+    .hero h1 { font-size: 38px; }
+
+    .equipo-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .equipo-nombre { font-size: 16px; }
+
+    .zona-grid { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; text-align: center; }
+    .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+  }
+
+  @media (max-width: 480px) {
+    .equipo-grid { grid-template-columns: 1fr; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+    .hero-actions { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <img src="logo-dark.png" alt="YK Rental" class="nav-logo">
+  <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20equipo.%20%C2%BFTienen%20disponibilidad%3F" class="nav-cta" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.369l-.358-.213-3.76.895.952-3.657-.234-.376A9.818 9.818 0 1112 21.818z"/></svg>
+    <span>Cotizar ahora</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+  <img src="logo-dark.png" alt="YK Rental" class="hero-logo">
+  <div class="hero-tag">Chihuahua y zona centro</div>
+  <h1>El equipo que<br><span>tu obra necesita,</span><br>cuando lo necesita</h1>
+  <p class="hero-sub">Renta de equipo ligero de construcción con entrega a domicilio en Chihuahua y municipios.</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20equipo.%20%C2%BFTienen%20disponibilidad%3F" class="btn-primary" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.369l-.358-.213-3.76.895.952-3.657-.234-.376A9.818 9.818 0 1112 21.818z"/></svg>
+      Pedir cotización por WhatsApp
+    </a>
+    <a href="#equipo" class="btn-secondary">Ver equipo disponible</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Tipos de equipo</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Zonas de servicio</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Respuesta</div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="section" id="equipo">
+  <div class="section-header reveal">
+    <span class="section-label">Inventario disponible</span>
+    <h2 class="section-title">Equipo listo<br>para rentar</h2>
+    <p class="section-sub">Consulta disponibilidad por WhatsApp antes de apartar</p>
+  </div>
+  <div class="equipo-grid">
+
+    <div class="equipo-card reveal">
+      <img src="cortadora.jpg" alt="Cortadora de concreto" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Cortadora de concreto</div>
+        <div class="equipo-desc">Sierra de piso con motor Honda. Ideal para cortes en pavimento, banquetas y losas.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20la%20cortadora%20de%20concreto.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <img src="generador.jpg" alt="Generador eléctrico" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Generador eléctrico</div>
+        <div class="equipo-desc">Generac PowerRush. Para obras sin suministro de luz o respaldo de energía en campo.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20el%20generador%20el%C3%A9ctrico.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <img src="martillo.jpg" alt="Martillo demoledor" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Martillo demoledor</div>
+        <div class="equipo-desc">Rompedor eléctrico Makita de alto impacto. Para demolición de concreto, pisos y muros.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20el%20martillo%20demoledor.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <img src="bailarina.jpg" alt="Bailarina compactadora" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Bailarina / Compactadora</div>
+        <div class="equipo-desc">Compactadora de suelo tipo pata de cabra. Para rellenos, zanjas y preparación de base.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20la%20bailarina%20compactadora.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <img src="revolvedora.jpg" alt="Revolvedora de concreto" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Revolvedora de concreto</div>
+        <div class="equipo-desc">Mezcladora con remolque. Para preparar mezcla en obra sin depender de concreto premezclado.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20la%20revolvedora.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <img src="llana.jpg" alt="Llana mecánica" class="equipo-img">
+      <div class="equipo-info">
+        <div class="equipo-nombre">Llana mecánica</div>
+        <div class="equipo-desc">Helicóptero Hyundai 7HP. Para acabado y pulido de pisos de concreto. Acabado profesional.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20la%20llana%20mec%C3%A1nica.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="section cobertura" id="cobertura">
+  <div class="cobertura-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Cobertura y fletes</span>
+      <h2 class="section-title">¿A dónde<br>llegamos?</h2>
+      <p class="section-sub">Entrega y recolección incluidas en Chihuahua ciudad</p>
+    </div>
+
+    <div class="zona-grid reveal">
+
+      <div class="zona-card featured">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Chihuahua ciudad</div>
+            <div class="zona-detalle">Mancha urbana completa</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio gratis">Incluido</div>
+          <div class="zona-nota">Sin costo extra</div>
+        </div>
+      </div>
+
+      <div class="zona-card">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4v16H6V4H4v16a2 2 0 002 2h12a2 2 0 002-2V4h-2zM9 8h6v2H9V8zm0 4h6v2H9v-2zM10 2h4v2h-4V2z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Aldama</div>
+            <div class="zona-detalle">~40 km de Chihuahua</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio">$200</div>
+          <div class="zona-nota">Flete por viaje</div>
+        </div>
+      </div>
+
+      <div class="zona-card">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4v16H6V4H4v16a2 2 0 002 2h12a2 2 0 002-2V4h-2zM9 8h6v2H9V8zm0 4h6v2H9v-2zM10 2h4v2h-4V2z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Carretera Juárez</div>
+            <div class="zona-detalle">~70 km de Chihuahua</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio">$350</div>
+          <div class="zona-nota">Flete por viaje</div>
+        </div>
+      </div>
+
+      <div class="zona-card">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4v16H6V4H4v16a2 2 0 002 2h12a2 2 0 002-2V4h-2zM9 8h6v2H9V8zm0 4h6v2H9v-2zM10 2h4v2h-4V2z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Meoqui</div>
+            <div class="zona-detalle">~75 km de Chihuahua</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio">$375</div>
+          <div class="zona-nota">Flete por viaje</div>
+        </div>
+      </div>
+
+      <div class="zona-card">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4v16H6V4H4v16a2 2 0 002 2h12a2 2 0 002-2V4h-2zM9 8h6v2H9V8zm0 4h6v2H9v-2zM10 2h4v2h-4V2z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Carretera Delicias</div>
+            <div class="zona-detalle">~110 km de Chihuahua</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio tope">$400</div>
+          <div class="zona-nota">Precio fijo</div>
+        </div>
+      </div>
+
+      <div class="zona-card">
+        <div class="zona-left">
+          <div class="zona-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 4v16H6V4H4v16a2 2 0 002 2h12a2 2 0 002-2V4h-2zM9 8h6v2H9V8zm0 4h6v2H9v-2zM10 2h4v2h-4V2z"/></svg>
+          </div>
+          <div>
+            <div class="zona-nombre">Carretera Cuauhtémoc</div>
+            <div class="zona-detalle">~110 km de Chihuahua</div>
+          </div>
+        </div>
+        <div>
+          <div class="zona-precio tope">$400</div>
+          <div class="zona-nota">Precio fijo</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cobertura-aviso reveal">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      El costo de flete se paga al momento de la entrega. El precio aplica por viaje redondo (entrega y recolección). Para rentas de varios días el flete se cobra una sola vez.
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-bg"></div>
+  <h2 class="reveal">¿Lista tu obra?<br><span>Nosotros ponemos el equipo.</span></h2>
+  <p class="reveal">Escríbenos por WhatsApp y te confirmamos disponibilidad en minutos.</p>
+  <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20equipo.%20%C2%BFTienen%20disponibilidad%3F" class="btn-primary reveal" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.369l-.358-.213-3.76.895.952-3.657-.234-.376A9.818 9.818 0 1112 21.818z"/></svg>
+    Cotizar por WhatsApp — 614 283 4220
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo-dark.png" alt="YK Rental" class="footer-logo">
+  <div class="footer-info">
+    <strong style="color:#fff">YK Rental — Equipo Ligero de Construcción</strong><br>
+    Chihuahua, Chih. · <a href="tel:6142834220">614 283 4220</a> · <a href="https://instagram.com/yk_rental_chihuahua" target="_blank">@yk_rental_chihuahua</a>
+  </div>
+  <div class="footer-info" style="text-align:right">
+    Precios de flete sujetos a cambio según precio de combustible.<br>
+    Consulta disponibilidad antes de apartar.
+  </div>
+</footer>
+
+<!-- WA FLOTANTE -->
+<a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20equipo.%20%C2%BFTienen%20disponibilidad%3F" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.002-1.369l-.358-.213-3.76.895.952-3.657-.234-.376A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
