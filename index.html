@@ -390,16 +390,36 @@ fbq('track','PageView');
     border-color: var(--rojo);
   }
 
-  .equipo-img {
+  .equipo-img-wrap {
     width: 100%;
     aspect-ratio: 4/3;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(20%);
-    transition: filter 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, rgba(204,0,0,0.10) 0%, transparent 72%);
+    overflow: hidden;
   }
 
-  .equipo-card:hover .equipo-img { filter: grayscale(0%); }
+  .equipo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 10px 24px rgba(0,0,0,0.55));
+    transition: transform 0.25s;
+  }
+
+  .equipo-card:hover .equipo-img { transform: scale(1.04); }
+
+  .equipo-icon {
+    width: 44%;
+    height: auto;
+    color: var(--rojo);
+    filter: drop-shadow(0 10px 20px rgba(204,0,0,0.25));
+    transition: transform 0.25s;
+  }
+
+  .equipo-card:hover .equipo-icon { transform: scale(1.04); }
 
   .equipo-info {
     padding: 18px 20px 20px;
@@ -700,7 +720,7 @@ fbq('track','PageView');
   </div>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num">6</div>
+      <div class="stat-num">8</div>
       <div class="stat-label">Tipos de equipo</div>
     </div>
     <div class="stat-divider"></div>
@@ -726,7 +746,9 @@ fbq('track','PageView');
   <div class="equipo-grid">
 
     <div class="equipo-card reveal">
-      <img src="cortadora.jpg" alt="Cortadora de concreto" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="cortadora.webp" alt="Cortadora de concreto" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Cortadora de concreto</div>
         <div class="equipo-desc">Sierra de piso con motor Honda. Ideal para cortes en pavimento, banquetas y losas.</div>
@@ -738,7 +760,9 @@ fbq('track','PageView');
     </div>
 
     <div class="equipo-card reveal">
-      <img src="generador.jpg" alt="Generador eléctrico" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="generador.webp" alt="Generador eléctrico" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Generador eléctrico</div>
         <div class="equipo-desc">Generac PowerRush. Para obras sin suministro de luz o respaldo de energía en campo.</div>
@@ -750,7 +774,9 @@ fbq('track','PageView');
     </div>
 
     <div class="equipo-card reveal">
-      <img src="martillo.jpg" alt="Martillo demoledor" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="martillo.webp" alt="Martillo demoledor" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Martillo demoledor</div>
         <div class="equipo-desc">Rompedor eléctrico Makita de alto impacto. Para demolición de concreto, pisos y muros.</div>
@@ -762,7 +788,9 @@ fbq('track','PageView');
     </div>
 
     <div class="equipo-card reveal">
-      <img src="bailarina.jpg" alt="Bailarina compactadora" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="bailarina.webp" alt="Bailarina compactadora" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Bailarina / Compactadora</div>
         <div class="equipo-desc">Compactadora de suelo tipo pata de cabra. Para rellenos, zanjas y preparación de base.</div>
@@ -774,7 +802,9 @@ fbq('track','PageView');
     </div>
 
     <div class="equipo-card reveal">
-      <img src="revolvedora.jpg" alt="Revolvedora de concreto" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="revolvedora.webp" alt="Revolvedora de concreto" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Revolvedora de concreto</div>
         <div class="equipo-desc">Mezcladora con remolque. Para preparar mezcla en obra sin depender de concreto premezclado.</div>
@@ -786,11 +816,41 @@ fbq('track','PageView');
     </div>
 
     <div class="equipo-card reveal">
-      <img src="llana.jpg" alt="Llana mecánica" class="equipo-img">
+      <div class="equipo-img-wrap">
+        <img src="llana.webp" alt="Llana mecánica" class="equipo-img">
+      </div>
       <div class="equipo-info">
         <div class="equipo-nombre">Llana mecánica</div>
         <div class="equipo-desc">Helicóptero Hyundai 7HP. Para acabado y pulido de pisos de concreto. Acabado profesional.</div>
         <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20la%20llana%20mec%C3%A1nica.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <div class="equipo-img-wrap">
+        <img src="andamio.webp" alt="Andamio / Torre de andamios" class="equipo-img">
+      </div>
+      <div class="equipo-info">
+        <div class="equipo-nombre">Andamio / Torre de andamios</div>
+        <div class="equipo-desc">Torre modular con marcos, crucetas y plataforma. Para trabajos en altura: fachadas, pintura, instalaciones y acabados.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20el%20andamio%20%2F%20torre%20de%20andamios.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
+          Consultar disponibilidad
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="equipo-card reveal">
+      <div class="equipo-img-wrap">
+        <img src="vibrador.webp" alt="Vibrador para concreto" class="equipo-img">
+      </div>
+      <div class="equipo-info">
+        <div class="equipo-nombre">Vibrador para concreto</div>
+        <div class="equipo-desc">Vibrador de inmersión con manguera flexible. Elimina burbujas de aire y compacta el colado en losas, muros y firmes.</div>
+        <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20el%20vibrador%20para%20concreto.%20%C2%BFTiene%20disponibilidad%3F" class="equipo-cta" target="_blank">
           Consultar disponibilidad
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
