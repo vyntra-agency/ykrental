@@ -635,6 +635,26 @@ fbq('track','PageView');
   .wa-float:hover { transform: scale(1.1); animation: none; }
   .wa-float svg { width: 30px; height: 30px; fill: #fff; }
 
+  /* ── LLAMADA FLOTANTE ── */
+  .call-float {
+    position: fixed;
+    bottom: 96px;
+    right: 28px;
+    z-index: 999;
+    width: 58px;
+    height: 58px;
+    background: var(--rojo);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(204,0,0,0.4);
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .call-float:hover { transform: scale(1.1); background: var(--rojo-dark); }
+  .call-float svg { width: 26px; height: 26px; fill: #fff; }
+
   /* ── ANIMACIONES ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -676,6 +696,7 @@ fbq('track','PageView');
 
     footer { flex-direction: column; text-align: center; }
     .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    .call-float { bottom: 82px; right: 20px; width: 52px; height: 52px; }
   }
 
   @media (max-width: 480px) {
@@ -999,6 +1020,11 @@ fbq('track','PageView');
     Consulta disponibilidad antes de apartar.
   </div>
 </footer>
+
+<!-- LLAMADA FLOTANTE -->
+<a href="tel:6142834220" class="call-float" aria-label="Llamar">
+  <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+</a>
 
 <!-- WA FLOTANTE -->
 <a href="https://wa.me/526142834220?text=Hola%2C%20me%20interesa%20rentar%20equipo.%20%C2%BFTienen%20disponibilidad%3F" class="wa-float" target="_blank" aria-label="WhatsApp">
